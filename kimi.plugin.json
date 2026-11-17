@@ -1,0 +1,38 @@
+{
+  "$schema": "https://catalog.msh.team/misc/kimi.plugin.schema.json",
+  "name": "anran-pet",
+  "version": "0.1.0",
+  "description": "安装和使用安燃原生 DIY 桌宠，包含已批准的桌宠资产与交互页面。",
+  "keywords": [
+    "桌宠",
+    "安燃",
+    "Pet",
+    "桌面伙伴"
+  ],
+  "author": "长煦",
+  "license": "Apache-2.0",
+  "skillInstructions": "用户给出本插件 GitHub 仓库并要求安装和启动，或要求安装、恢复、检查安燃桌宠时，使用 anran-pet 技能并连续完成插件安装、独立桌宠创建和交互页面发布，不只登记插件。",
+  "interface": {
+    "displayName": "安燃桌宠",
+    "shortDescription": "把安燃桌宠安装到 Kimi。",
+    "longDescription": "安燃是一个活泼可爱的原生 DIY 桌宠。插件提供已批准的图集、清单和交互页面，由 Kimi 在当前工作区完成原生安装。",
+    "developerName": "长煦",
+    "websiteURL": "https://github.com/yuchangxu1989-Openclaw/anran-pet",
+    "iconUrl": "",
+    "category": "PERSONALIZATION",
+    "defaultLocale": "zh-CN",
+    "locales": "./locales/",
+    "tryPrompts": [
+      "安装安燃桌宠",
+      "把安燃安装到我的桌面",
+      "检查安燃桌宠的安装状态"
+    ],
+    "skillOverrides": {
+      "anran-pet": {
+        "displayName": "安燃桌宠",
+        "description": "把安燃桌宠安装到 Kimi。"
+      }
+    }
+  },
+  "skills": "./skills/"
+}

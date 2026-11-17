@@ -1,0 +1,17 @@
+{
+  "displayName": "Anran Desktop Pet",
+  "shortDescription": "Install the Anran desktop Pet in Kimi.",
+  "longDescription": "Anran is a lively native DIY desktop Pet. This plugin includes the approved atlas, manifest and interaction page; Kimi installs it into your active workspace through the native Pet interface.",
+  "developerName": "Changxu",
+  "tryPrompts": [
+    "Install the Anran desktop Pet",
+    "Put Anran on my desktop",
+    "Check Anran's installation status"
+  ],
+  "skillOverrides": {
+    "anran-pet": {
+      "displayName": "Anran Desktop Pet",
+      "description": "Install the Anran desktop Pet in Kimi."
+    }
+  }
+}
