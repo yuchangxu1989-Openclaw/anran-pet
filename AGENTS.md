@@ -4,8 +4,8 @@
 
 ## 主流程
 
-1. 通过当前宿主支持的官方插件入口导入并安装本仓库。可使用内置 Plugin Builder；需要直接安装时，使用官方 `kimi-daimon kimi-plugin install` 入口。不得修改宿主程序包。
-2. 从转换后的源目录或已安装插件中读取 `skills/anran-pet/SKILL.md`。已安装副本只读，所有安装动作由该技能的脚本和官方桌宠接口完成。
+1. 通过内置 Plugin Builder 从本仓库链接导入并登记插件。不要使用 `kimi-daimon kimi-plugin install <GitHub链接>`：该入口已实测不会完成 GitHub 插件安装。不得修改宿主程序包。
+2. 在转换后的源目录运行 `python3 <源目录>/skills/anran-pet/scripts/install_plugin.py --id anran-pet`，由脚本调用官方运行中安装接口并回读 `installed`、`health=ok` 和版本一致性。脚本失败时如实报错，不直接写入受管插件目录。随后读取 `skills/anran-pet/SKILL.md`。已安装副本只读，所有桌宠动作由该技能的脚本和官方桌宠接口完成。
 3. 在当前工作区执行技能的 `stage` 步骤，取得真实 `packagePath`。
 4. 调用官方 `Widget.installPet` 创建安燃，再按技能说明执行 `Widget.read`、`finalize` 和哈希回读。不要漏掉交互页面发布。
 5. 最终分别报告：插件安装状态、插件是否需要重新加载、桌宠实例是否创建、页面是否发布、哪些真实桌面项目尚未观察。
