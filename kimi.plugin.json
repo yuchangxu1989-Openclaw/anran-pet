@@ -1,8 +1,8 @@
 {
   "$schema": "https://catalog.msh.team/misc/kimi.plugin.schema.json",
   "name": "anran-pet",
-  "version": "0.1.1",
-  "description": "安装和使用安燃原生 DIY 桌宠，包含已批准的桌宠资产与交互页面。",
+  "version": "0.2.6+local.20261119-175454",
+  "description": "一个安燃插件，统一安装或恢复 Kimi 原生桌宠，并把同一安燃独立安装到本机稳定目录，供 WorkBuddy、vBuddy、千问和豆包连接。",
   "keywords": [
     "桌宠",
     "安燃",
@@ -11,11 +11,11 @@
   ],
   "author": "长煦",
   "license": "Apache-2.0",
-  "skillInstructions": "用户给出本插件 GitHub 仓库并要求安装和启动，或要求安装、恢复、检查安燃桌宠时，使用 anran-pet 技能并连续完成插件安装、独立桌宠创建和交互页面发布，不只登记插件。",
+  "skillInstructions": "一个安燃插件统一管理原生桌宠、运行器和各 Agent 的官方连接注册，不让用户另装 MCP 产品。安装或恢复时先发现并复用正式实例，确认不存在才创建。连接其他 Agent 时通过统一 connect 入口调用原生安装器，先写入安燃自己的稳定目录，再注册宿主；Kimi 插件更新不是其他宿主的前置步骤。真实验收同启同关、任务片段气泡、右键菜单、拖拽和追视。",
   "interface": {
-    "displayName": "安燃桌宠",
-    "shortDescription": "把安燃桌宠安装到 Kimi。",
-    "longDescription": "安燃是一个活泼可爱的原生 DIY 桌宠。插件提供已批准的图集、清单和交互页面，由 Kimi 在当前工作区完成原生安装。",
+    "displayName": "安燃",
+    "shortDescription": "一个插件，统一安装安燃并连接到支持的 Agent。",
+    "longDescription": "安装并启用“安燃”后，可安装或恢复 Kimi 原生 DIY 桌宠，也可把同一个安燃连接到 WorkBuddy、vBuddy、千问和豆包。原生安装器会把运行器和资源写入安燃自己的稳定目录，宿主不再依赖 Kimi 插件目录。无需另装 MCP 产品或手工解压运行器。各端共用同启同关、右键打开 Agent 或关闭桌宠、拖动位置保持的体验。",
     "developerName": "长煦",
     "websiteURL": "https://github.com/yuchangxu1989-Openclaw/anran-pet",
     "iconUrl": "",
@@ -29,8 +29,8 @@
     ],
     "skillOverrides": {
       "anran-pet": {
-        "displayName": "安燃桌宠",
-        "description": "把安燃桌宠安装到 Kimi。"
+        "displayName": "安燃",
+        "description": "统一安装安燃，并连接到支持的 Agent。"
       }
     }
   },

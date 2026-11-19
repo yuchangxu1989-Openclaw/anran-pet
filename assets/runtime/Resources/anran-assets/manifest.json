@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": "anran-native-6a0503c5eaa4",
+  "productVersion": "0.2.0",
+  "sourceContract": "LATEST.json:latestCandidate",
+  "logicalStates": 11,
+  "logicalFrames": 1091,
+  "files": [
+    {
+      "name": "pet.json",
+      "bytes": 359396,
+      "sha256": "7d4a3b058070ece1a247c40fd8f9da86375a362282e2e0c81a68a25c9dfddcab"
+    },
+    {
+      "name": "spritesheet.webp",
+      "bytes": 12729422,
+      "sha256": "9174d743fadf88a69b2002df47938f0e57d6b8ed7a0cdf6db76fb5f2892bb476"
+    },
+    {
+      "name": "index.html",
+      "bytes": 234405,
+      "sha256": "6a0503c5eaa41d2655c915b66a23492af3609be2f91f9928bd3c9b1b9fca1126"
+    }
+  ]
+}

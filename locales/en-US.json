@@ -1,17 +1,17 @@
 {
-  "displayName": "Anran Desktop Pet",
-  "shortDescription": "Install the Anran desktop Pet in Kimi.",
-  "longDescription": "Anran is a lively native DIY desktop Pet. This plugin includes the approved atlas, manifest and interaction page; Kimi installs it into your active workspace through the native Pet interface.",
+  "displayName": "Anran",
+  "shortDescription": "One plugin to install Anran and connect it to supported Agents.",
+  "longDescription": "Install or restore Anran as a native Kimi Pet, or connect the same Anran to WorkBuddy, vBuddy, Qwen and Doubao. The native installer copies Anran and its resources into Anran-owned stable storage, so installed hosts do not depend on Kimi's plugin directory. No separate MCP product or manual runtime archive is required. Supported hosts share lifecycle, right-click and persistent drag-position behavior, subject to real host verification.",
   "developerName": "Changxu",
   "tryPrompts": [
-    "Install the Anran desktop Pet",
-    "Put Anran on my desktop",
+    "Install Anran on my desktop now",
+    "Connect Anran to vBuddy",
     "Check Anran's installation status"
   ],
   "skillOverrides": {
     "anran-pet": {
-      "displayName": "Anran Desktop Pet",
-      "description": "Install the Anran desktop Pet in Kimi."
+      "displayName": "Anran",
+      "description": "Install Anran and connect it to supported Agents from one plugin."
     }
   }
 }
