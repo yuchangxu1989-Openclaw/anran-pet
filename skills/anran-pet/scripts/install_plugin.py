@@ -14,8 +14,12 @@ INSTALL = "kimiPlugin.personal.installPlugin"
 
 
 def payload(response: dict) -> object:
-    if not isinstance(response, dict) or "error" in response or response.get("result") is None:
-        raise RuntimeError("Official plugin RPC returned no usable result")
+    if not isinstance(response, dict):
+        raise RuntimeError("Official plugin RPC returned a non-object response")
+    if "error" in response:
+        raise RuntimeError("Official plugin RPC error: " + json.dumps(response["error"], ensure_ascii=False))
+    if response.get("result") is None:
+        raise RuntimeError("Official plugin RPC returned no usable result: " + json.dumps(response, ensure_ascii=False))
     return response["result"]
 
 
@@ -113,8 +117,8 @@ def main() -> int:
     try:
         backend = Official()
         result = asyncio.run(install(args.id, backend))
-    except Exception:
-        result = {"ok": False, "error": "official_install_failed"}
+    except Exception as error:
+        result = {"ok": False, "error": "official_install_failed", "detail": f"{type(error).__name__}: {error}"}
     output = json.dumps(result, ensure_ascii=False, indent=2)
     if backend and backend.token:
         output = output.replace(backend.token, "[REDACTED]")

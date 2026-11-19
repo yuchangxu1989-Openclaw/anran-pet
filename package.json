@@ -1,6 +1,6 @@
 {
   "name": "anran-desktop-pet",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "description": "Anran native desktop pet and MCP launcher for supported Agents",
   "license": "Apache-2.0",
   "private": false,
