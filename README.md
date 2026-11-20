@@ -12,7 +12,7 @@
 
 安燃把原生桌宠、任务状态气泡和 Agent 连接放在同一个插件里。Kimi、WorkBuddy、vBuddy、千问和豆包共用同一份角色素材与原生运行器，不需要另装第二个 MCP 产品，也不需要手动解压运行器。
 
-**当前公开版本：0.2.9｜Apple Silicon Mac｜Apache-2.0**
+**当前公开版本：0.2.9｜本工作区候选：0.2.10（尚未公开）｜Apple Silicon Mac｜Apache-2.0**
 
 ### 桌面上的一个伙伴
 
@@ -94,6 +94,8 @@ npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.9 self-test
 
 也可以换成 vBuddy 或豆包。统一入口会生成对应配置，再通过该 Agent 的官方连接器界面保存。上述宿主的真实界面与交互尚未逐项验收。
 
+vBuddy、千问个人连接和豆包通过 MCP 初始化说明与工具约定主动上报任务状态；是否执行取决于真实宿主与模型，不能仅凭连接成功认定已对齐。千问企业账号还可在“企业管理后台 → 安全管控 → Hooks 规则”配置安装输出中的六类 HTTP 事件，接收端只监听本机 `127.0.0.1:47683`；个人账号没有经营主体时不能据此宣称企业入口可用。
+
 ## 一次升级，各端使用同一份产品
 
 原生运行器、角色素材和体验约定由同一份产品源生成。公开包、Kimi 插件源包和 WorkBuddy Connector 使用相同产品版本；安装后还会核对版本与文件哈希，避免不同端各自维护、逐渐出现功能差异。
@@ -113,15 +115,15 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 |---|---|
 | GitHub | 已公开，可直接获取 0.2.9；不需要企业认证 |
 | Kimi 官方市场 | 个人插件可在详情页右上角「✉️」选择“申请发布到官方市场”，填写联系邮箱后由审核团队评估；申请不等于上架 |
-| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。当前仅准备好 0.2.9 Connector 包，未提交、未上架 |
+| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.10 Connector 本地候选已生成，未提交、未上架 |
 | 千问办公公共扩展 | 官方文档写明当前版本暂不支持个人用户上传或发布自建技能 |
 | 豆包 | 暂未找到支持个人公开发布此类桌宠插件的官方入口 |
 
-参考：[Kimi 插件发布说明](https://www.kimi.com/help/plugins-and-skills/publish)、[WorkBuddy Connector 说明](https://open.workbuddy.cn/docs/connector)、[WorkBuddy 开放平台概述](https://open.workbuddy.cn/docs/what-is-open-platform)、[千问办公扩展说明](https://help.aliyun.com/zh/qwenwork/qwenwork-extensions-1)。
+参考：[Kimi 插件发布说明](https://www.kimi.com/help/plugins-and-skills/publish)、[WorkBuddy Connector 说明](https://open.workbuddy.cn/docs/connector)、[WorkBuddy 开放平台概述](https://open.workbuddy.cn/docs/what-is-open-platform)、[千问办公扩展说明](https://help.aliyun.com/zh/qwenwork/qwenwork-extensions-1)、[千问办公 Hooks](https://help.aliyun.com/zh/qwenwork/qw-hooks)。
 
 ## 当前验收边界
 
-0.2.9 已通过 12 组自动检查，包括 3089 项 Swift 模型检查、协议、独立安装、资源一致性、公开包结构和 Connector 内容检查。指定 Git 标签的公开安装、版本与哈希回读、自测也已通过。
+0.2.9 公开版已通过 12 组自动检查及指定 Git 标签的公开安装、版本与哈希回读、自测。0.2.10 本地候选通过 13 组检查，新增千问六类 HTTP 事件、重复与乱序、异常可见性及 MCP 主动上报说明；尚未公开，也未更新真实宿主。
 
 以下项目仍需在真实环境单独验收：
 
