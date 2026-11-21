@@ -15,7 +15,7 @@
 1. 双击 `Install Anran.command`。如果 macOS 阻止打开，按住 Control 点按安装器，选择“打开”；系统仍阻止未签名运行器时停止并保留错误，不绕过保护。
 2. WorkBuddy 安装回执保存为 `workbuddy-install-receipt.json`；检测到 Kimi 时另有 `kimi-plugin-install-receipt.json`。
 3. 手动重开 WorkBuddy。安燃配置指向安燃自己的稳定目录，不再需要到 Kimi 点击插件“更新”。
-4. 如果安装了 Kimi 插件且提示需要重启，手动重启 Kimi，再说一句：**安装安燃桌宠**。这一步才创建 Kimi 原生桌宠实例。
+4. 如果安装了 Kimi 插件且提示需要重启，手动重启 Kimi，再说一句：**安装安燃桌宠**。这一步才创建 Kimi 中的安燃桌宠实例。
 
 插件安装、配置写入和进程启动不等于桌面视觉与交互已经验收。
 

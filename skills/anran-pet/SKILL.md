@@ -9,14 +9,14 @@ description: 安装、恢复、检查安燃，或把同一个安燃连接到 Wor
 
 ## Kimi：安装或恢复
 
-用户直接说“安装安燃”“把安燃放到桌面”或“打开安燃”，无需仓库，也不重复安装插件。
+用户直接说“安装安燃”“把安燃放到桌面”或“打开安燃”时，Kimi 优先使用插件市场；插件已安装则无需仓库，也不重复安装插件。GitHub 只承担公开源程序、版本证据及市场不可用时的备用安装。
 
 1. 调用 `Widget.list`，筛选 `type=pet` 且标题为安燃的候选，逐个用 `Widget.read` 取得 `workspaceRoot`，读取其 `pet.json`。唯一候选且 `id` 与插件 `assets/pet/pet.json` 的正式 `id` 一致时复用；确认没有正式实例才创建。多个候选、身份不一致或无法读取时停止。
 2. 复用时运行 `install_anran.py stage --workspace <当前工作区> --existing-root <正式实例的 workspaceRoot>`，禁止再调用 `Widget.installPet`。只有用户要求恢复页面且允许覆盖时才运行 `finalize --overwrite`。
 3. 首次创建时运行 `install_anran.py stage --workspace <当前工作区>`，再调用 `Widget.installPet` 并传入返回的 `packagePath`。用 `Widget.read` 读取新实例，确认默认页面确由本次安装生成后运行 `finalize --overwrite`。
 4. 读回 `pet.json`、图集和 `index.html` 哈希。真实桌面、输入和播放未观察时明确标为未验收，不用安装回执代替。
 
-用户给 GitHub 链接并要求安装时，先通过内置 Plugin Builder 导入登记，再运行源目录 `scripts/install_plugin.py --id anran-pet`，由官方接口安装并回读。随后连续完成上述流程，不停在登记、安装回执或要求用户再点击。不要使用已实测不能完成 GitHub 安装的 `kimi-daimon kimi-plugin install <GitHub链接>`。
+市场不可用或用户明确选择 GitHub 备用安装时，先通过内置 Plugin Builder 导入登记，再运行源目录 `scripts/install_plugin.py --id anran-pet`，由官方接口安装并回读。随后连续完成上述流程，不停在登记、安装回执或要求用户再点击。不要使用已实测不能完成 GitHub 安装的 `kimi-daimon kimi-plugin install <GitHub链接>`。
 
 ## 其他 Agent：连接同一个安燃
 
@@ -30,7 +30,7 @@ description: 安装、恢复、检查安燃，或把同一个安燃连接到 Wor
 
 ## 发布与更新
 
-以项目登记的当前原生资产和 `experience-contract.json` 为唯一来源。统一发布入口 `anran_product_repair_20261117/release_anran.py` 同步素材与合同、生成参考光标、构建运行器并放入本插件；所有宿主共用这一产物，不分别维护视觉或交互分支。任何宿主安装或升级都先写入安燃自己的稳定安装目录，再更新该宿主的官方连接配置；Python 连接脚本不另维护一套写入逻辑。
+以项目登记的当前原生资产和 `experience-contract.json` 为唯一体验来源，以 `anran_product_repair_20261117/release-contract.json` 为唯一渠道与版本口径。统一发布入口 `anran_product_repair_20261117/release_anran.py` 读取发布合同，同步素材与体验合同、生成参考光标、构建运行器并放入本插件；所有宿主共用这一产物，不分别维护视觉或交互分支。任何宿主安装或升级都先写入安燃自己的稳定安装目录，再更新该宿主的官方连接配置；Python 连接脚本不另维护一套写入逻辑。
 
 公开版本只能在全部离线检查通过后，由同一入口使用 `--publish` 提交当前插件源包、创建不覆盖旧版本的 Git 标签并推送 GitHub。随后必须从公开标签在隔离 HOME 与 npm 缓存中重新安装，回读版本、原生二进制哈希、体验合同哈希和 `requiresKimi=false`，再运行公开包自检；任一项失败都不得记为已发布。`--check` 只核查已有产物，不执行公开发布。
 

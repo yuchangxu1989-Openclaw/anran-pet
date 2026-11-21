@@ -136,7 +136,7 @@ def finalize(widget_root: Path, overwrite: bool) -> dict:
 HOSTS = ("workbuddy", "vbuddy", "qwen", "doubao")
 HOST_ENTRIES = {
     "workbuddy": "插件 → MCP 服务器 → 配置 MCP",
-    "vbuddy": "连接器 → 添加 → STDIO → 手动填写配置",
+    "vbuddy": "连接器 → 添加 → 粘贴 JSON 配置",
     "qwen": "扩展 → 连接器 → 添加 → 手动填写配置",
     "doubao": "技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器",
 }

@@ -69,7 +69,7 @@ if [ -z "$BIN" ]; then
 fi
 
 if [ -z "$BIN" ]; then
-  printf '\n未检测到 Kimi，已跳过 Kimi 原生桌宠安装；WorkBuddy 安燃可独立使用。\n'
+  printf '\n未检测到 Kimi，已跳过 Kimi 中的安燃桌宠安装；WorkBuddy 安燃可独立使用。\n'
   finish 0
 fi
 
