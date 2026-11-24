@@ -183,6 +183,16 @@ def apply_workbuddy(config_path: Path, settings_path: Path | None = None,
     return run_installer("workbuddy", True, config_path, settings, install_root)
 
 
+def replace_atomically(source: Path, target: Path) -> None:
+    """Replace an existing file without truncating its signed executable in place."""
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        shutil.copy2(source, temporary)
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def bundle_runtime(package: Path) -> dict:
     source = package.resolve()
     binary = source / "anran"
@@ -195,11 +205,11 @@ def bundle_runtime(package: Path) -> dict:
             raise FileNotFoundError(resources / name)
     target = ASSETS / "runtime"
     target.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(binary, target / "anran")
+    replace_atomically(binary, target / "anran")
     target_resources = target / "Resources" / "anran-assets"
     target_resources.mkdir(parents=True, exist_ok=True)
     for name in asset_names:
-        shutil.copy2(resources / name, target_resources / name)
+        replace_atomically(resources / name, target_resources / name)
     return {"status": "bundled", "binary": str(target / "anran"), "binarySha256": digest(target / "anran")}
 
 

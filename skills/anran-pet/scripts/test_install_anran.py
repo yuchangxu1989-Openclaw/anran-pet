@@ -123,6 +123,29 @@ with tempfile.TemporaryDirectory() as temporary:
         subprocess.run = real_run
     checks.append("native installer failures remain visible to the caller")
 
+    package = workspace / "runtime-package"
+    package_resources = package / "Resources" / "anran-assets"
+    package_resources.mkdir(parents=True)
+    package_binary = package / "anran"
+    asset_names = ("pet.json", "spritesheet.webp", "index.html", "manifest.json")
+    assert binary.is_file() and all((resources / name).is_file() for name in asset_names)
+    for version in ("first", "second"):
+        package_binary.write_text(f"#!/bin/sh\necho {version}\n", encoding="utf-8")
+        package_binary.chmod(0o755)
+        for name in asset_names:
+            (package_resources / name).write_text(f"{name}:{version}", encoding="utf-8")
+        previous_inode = binary.stat().st_ino
+        previous_resource_inodes = {name: (resources / name).stat().st_ino for name in asset_names}
+        module.bundle_runtime(package)
+        assert binary.stat().st_ino != previous_inode
+        assert binary.read_bytes() == package_binary.read_bytes()
+        for name in asset_names:
+            target_resource = resources / name
+            assert target_resource.stat().st_ino != previous_resource_inodes[name]
+            assert target_resource.read_bytes() == (package_resources / name).read_bytes()
+        assert not list((module.ASSETS / "runtime").rglob("*.tmp"))
+    checks.append("repeated runtime bundling atomically replaces existing binaries and resources")
+
     binary.unlink()
     try:
         module.connection("vbuddy")
