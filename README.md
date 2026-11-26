@@ -39,9 +39,23 @@ Agent 连接时显示安燃，Agent 退出后关闭；任务结束不会把桌�
 
 ### 把这句话复制给你的 Agent
 
-> 请在我这台 Apple Silicon Mac 上安装、启动并使用安燃，公开仓库是 https://github.com/yuchangxu1989-Openclaw/anran-pet 。不要让我替换宿主名、拼接命令、解压运行器或另装第二套 MCP。先读取当前公开 README。如果我是 KimiWork：通过官方 Plugin Builder 导入这个 GitHub 仓库，运行导入源目录中的 skills/anran-pet/scripts/install_plugin.py --id anran-pet，由官方插件接口安装并回读，再严格按已加载的 anran-pet 技能发现或创建正式安燃实例、启动并发布交互页面；不要运行面向其他宿主的原生 --host 安装。其他 Agent 通过 Node.js 原样运行 npx -y github:yuchangxu1989-Openclaw/anran-pet install --host auto --print；auto 只根据当前进程识别宿主，无法唯一识别时才按你的真实身份改用 workbuddy、vbuddy、qwen 或 doubao，不根据已安装应用猜测。WorkBuddy 用 --host workbuddy --apply 自动写入官方配置和任务 Hooks 并回读；vBuddy 用 --host vbuddy --apply 生成官方套件，只需引导我在“专家套件 → 添加 → 上传套件”选择输出中的 vbuddy.archivePath，官方 Hooks 负责任务气泡，不能只装 MCP；千问引导我在官方“扩展 → 连接器 → 添加 → 粘贴 JSON 配置”中粘贴 configuration.officialJSON，个人账号没有已验证的自动任务事件入口，企业账号可按输出配置官方 HTTP Hooks；豆包引导我在“技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器”中填写 configuration，MCP 主动上报不能保证任务气泡。官方界面必须由我确认时，只告诉我这一项操作。安装后回读版本、资源哈希和七个工具并运行自测，再完成真实连接检查；任务气泡、单击、双击和拖拽未实际验证就明确标为未验收，无法完成的步骤不要假装成功。
+> 请在我这台 Apple Silicon Mac 上安装、启动并使用安燃，公开仓库是 https://github.com/yuchangxu1989-Openclaw/anran-pet 。不要让我替换宿主名、拼接命令、解压运行器或另装第二套 MCP。先读取当前公开 README。如果自动导入、命令执行或官方配置写入失败，不要停在报错，也不要把整段命令转交给我；继续读取 README 的“自动安装失败时的手动兜底”，按当前宿主的官方界面路径完成安装，官方没有受支持手动入口时明确报告限制。如果我是 KimiWork：通过官方 Plugin Builder 导入这个 GitHub 仓库，运行导入源目录中的 skills/anran-pet/scripts/install_plugin.py --id anran-pet，由官方插件接口安装并回读，再严格按已加载的 anran-pet 技能发现或创建正式安燃实例、启动并发布交互页面；不要运行面向其他宿主的原生 --host 安装。其他 Agent 通过 Node.js 原样运行 npx -y github:yuchangxu1989-Openclaw/anran-pet install --host auto --print；auto 只根据当前进程识别宿主，无法唯一识别时才按你的真实身份改用 workbuddy、vbuddy、qwen 或 doubao，不根据已安装应用猜测。WorkBuddy 用 --host workbuddy --apply 自动写入官方配置和任务 Hooks 并回读；vBuddy 用 --host vbuddy --apply 生成官方套件，只需引导我在“专家套件 → 添加 → 上传套件”选择输出中的 vbuddy.archivePath，官方 Hooks 负责任务气泡，不能只装 MCP；千问引导我在官方“扩展 → 连接器 → 添加 → 粘贴 JSON 配置”中粘贴 configuration.officialJSON，个人账号没有已验证的自动任务事件入口，企业账号可按输出配置官方 HTTP Hooks；豆包引导我在“技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器”中填写 configuration，MCP 主动上报不能保证任务气泡。官方界面必须由我确认时，只告诉我这一项操作。安装后回读版本、资源哈希和七个工具并运行自测，再完成真实连接检查；任务气泡、单击、双击和拖拽未实际验证就明确标为未验收，无法完成的步骤不要假装成功。
 
 同一段文字可原样复制到 KimiWork、WorkBuddy、vBuddy、千问办公或豆包，不需要替换宿主名。KimiWork 通过官方 Plugin Builder 导入公开插件并创建桌宠；其他 Agent 识别当前宿主并安装同一原生运行器。只有官方界面强制要求时才请你确认或粘贴已生成的完整配置。宿主没有任务事件入口或真实任务气泡未通过时，Agent 必须明确报告，不能把连接成功说成全部体验已对齐。
+
+### 自动安装失败时的手动兜底
+
+自动导入、下载、命令执行或配置写入失败时，Agent 不应只把报错交还给用户，也不应让用户自己研究命令。Agent 要先保留错误、判断失败发生在哪一步，再按下表继续引导官方界面操作；只有界面必须本人确认的步骤才交给用户，其余步骤仍由 Agent 完成。不得直接写宿主的受管目录或私有配置。
+
+| 当前 Agent | 自动安装失败后的官方手动路径 | 完成后怎样确认 |
+|---|---|---|
+| KimiWork | 让 Agent 通过官方 Plugin Builder 重新导入本仓库，并由官方插件接口安装；随后对 Kimi 说“安装安燃”，创建或复用正式桌宠。若当前客户端没有受支持的 GitHub 导入入口，明确报告限制，不改受管插件目录。 | 回读官方插件安装状态，再确认正式桌宠和交互页面已发布；导入回执本身不算桌宠已启动。 |
+| WorkBuddy | 打开官方 MCP 设置，粘贴下方 WorkBuddy 完整 JSON，保存并重新连接。随后让 Agent 回读 MCP 与任务 Hooks；若 Hooks 仍未写入，只算连接器已配置，任务气泡继续标为未完成。 | 回读运行器版本、资源哈希、七个工具和任务 Hooks，不用“已连接”代替任务气泡验收。 |
+| vBuddy | 由 Agent 运行下方 `install --host vbuddy --apply`，读取输出中的 `vbuddy.archivePath`；用户只需在“专家套件 → 添加 → 上传套件”选择该 ZIP。若提示同名冲突，确认替换的是当前安燃套件。 | 在套件详情页回读目标版本并确认已启用；只生成 ZIP、只装 MCP 都不等于完成。 |
+| 千问办公 | 由 Agent 运行 `install --host qwen --print`，读取 `configuration.officialJSON`；用户在“扩展 → 连接器 → 添加 → 粘贴 JSON 配置”粘贴完整 JSON。不要拆分含空格的 `command` 路径，也不要直接使用下方带 `YOUR_USERNAME` 的结构示例。 | 回读“已连接”、开关状态和七个工具；个人账号的 MCP 主动上报不能保证任务气泡。 |
+| 豆包 | 由 Agent 运行 `install --host doubao --print`，读取 `configuration`；用户在“技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器”填写该配置。 | 回读连接器与七个工具；MCP 主动上报未触发时，明确标为任务气泡未验收。 |
+
+如果下载本身失败，先保留网络或权限错误，再重试公开仓库读取；如果平台没有上述受支持入口，就明确写出“当前没有已核实的手动安装兜底”，不要编造配置路径。手动安装完成后仍须执行版本、资源哈希、七个工具和真实连接检查。
 
 ### Kimi
 
