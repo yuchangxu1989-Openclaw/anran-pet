@@ -46,12 +46,19 @@ try {
 const args = process.argv.slice(2);
 const command = args[0] || "help";
 let executable = binary;
+const forwardedArgs = [...args];
 if (["install", "connect", "mcp"].includes(command)) {
   const hostIndex = args.indexOf("--host");
   const host = hostIndex >= 0 ? args[hostIndex + 1] : undefined;
   if (!["auto", "workbuddy", "vbuddy", "qwen", "doubao"].includes(host)) {
     fail("use --host auto, workbuddy, vbuddy, qwen or doubao");
   }
+  if (["install", "connect"].includes(command) && process.env.ANRAN_INSTALL_ROOT && !args.includes("--install-root")) {
+    forwardedArgs.push("--install-root", process.env.ANRAN_INSTALL_ROOT);
+  }
+}
+if (command === "mcp") {
+  const host = args[args.indexOf("--host") + 1];
   const installArgs = ["install", "--host", host, "--print"];
   if (process.env.ANRAN_INSTALL_ROOT) installArgs.push("--install-root", process.env.ANRAN_INSTALL_ROOT);
   const installed = spawnSync(binary, installArgs, {
@@ -77,7 +84,7 @@ if (["install", "connect", "mcp"].includes(command)) {
   }
 }
 
-const child = spawn(executable, args, { stdio: "inherit", env: process.env });
+const child = spawn(executable, forwardedArgs, { stdio: "inherit", env: process.env });
 for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
   process.on(signal, () => { if (!child.killed) child.kill(signal); });
 }

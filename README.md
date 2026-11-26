@@ -12,7 +12,7 @@
 
 安燃把原生桌宠、任务状态气泡和 Agent 连接放在同一个插件里。Kimi、WorkBuddy、vBuddy、千问和豆包共用同一份角色素材与原生运行器，不需要另装第二个 MCP 产品，也不需要手动解压运行器。
 
-**当前公开版本：0.2.25｜Apple Silicon Mac｜Apache-2.0**
+**当前公开版本：0.2.26｜Apple Silicon Mac｜Apache-2.0**
 
 ### 桌面上的一个伙伴
 
@@ -67,7 +67,7 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
       "command": "npx",
       "args": [
         "-y",
-        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.25",
+        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.26",
         "mcp",
         "--stdio",
         "--host",
@@ -88,8 +88,8 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
 如果只需先检查公开包能否在自己的 Mac 上安装，可以运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.25 version
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.25 self-test
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.26 version
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.26 self-test
 ```
 
 这两条命令分别回读版本和运行模型自测，不会代替真实桌面体验验收。
@@ -105,7 +105,7 @@ npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.25 self-test
 vBuddy 使用官方插件 Hooks 自动上报任务状态，MCP 仅作备用。先运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.25 install --host vbuddy --apply
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.26 install --host vbuddy --apply
 ```
 
 再打开 vBuddy“专家套件 → 添加 → 上传套件”，选择安装输出中的 `vbuddy.archivePath` 指向的 ZIP 并安装。不要用已证实不可用的 `install_from_path`，也不要直接写 `plugins-custom` 或私有注册表。
@@ -146,9 +146,9 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 | 渠道 | 当前状态 |
 |---|---|
-| GitHub | 已公开，可直接获取 0.2.25；不需要企业认证 |
+| GitHub | 已公开，可直接获取 0.2.26；不需要企业认证 |
 | Kimi 官方市场 | 个人插件可在详情页右上角「✉️」选择“申请发布到官方市场”，填写联系邮箱后由审核团队评估；申请不等于上架 |
-| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.25 Connector 本地候选已生成，未提交、未上架 |
+| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.26 Connector 本地候选已生成，未提交、未上架 |
 | 千问办公公共扩展 | 官方文档写明当前版本暂不支持个人用户上传或发布自建技能 |
 | 豆包 | 暂未找到支持个人公开发布此类桌宠插件的官方入口 |
 
@@ -156,7 +156,7 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 ## 当前验收边界
 
-0.2.25 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
+0.2.26 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
 
 以下项目仍需在真实环境单独验收：
 
