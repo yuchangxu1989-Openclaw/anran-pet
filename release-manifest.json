@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "productVersion": "0.2.26",
+  "productVersion": "0.2.27",
   "platform": "darwin",
   "arch": "arm64",
   "requiresKimi": false,
-  "experienceContractSha256": "7ebce72d0621f3b048e01cd8823c714cba0c2bf885738ddfb8c908e0f18b5e9c",
+  "experienceContractSha256": "a3e1adb2e641b847418cf4945d43712aa7dad36728a154399ece3fa1b94673cb",
   "runtime": {
-    "binarySHA256": "279d3a411bbdc17de0faef579f9afcb1075874f0371f71c03b1c8d95c5d9318c",
+    "binarySHA256": "1c3af4188c1d09999f89dbc9fc27e3ea2b9b0c5ff3b0018f8c7a891bcc7fda9b",
     "resources": {
       "pet.json": "7d4a3b058070ece1a247c40fd8f9da86375a362282e2e0c81a68a25c9dfddcab",
       "spritesheet.webp": "9174d743fadf88a69b2002df47938f0e57d6b8ed7a0cdf6db76fb5f2892bb476",
