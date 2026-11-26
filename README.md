@@ -12,7 +12,7 @@
 
 安燃把原生桌宠、任务状态气泡和 Agent 连接放在同一个插件里。Kimi、WorkBuddy、vBuddy、千问和豆包共用同一份角色素材与原生运行器，不需要另装第二个 MCP 产品，也不需要手动解压运行器。
 
-**当前公开版本：0.2.22｜Apple Silicon Mac｜Apache-2.0**
+**当前公开版本：0.2.24｜Apple Silicon Mac｜Apache-2.0**
 
 ### 桌面上的一个伙伴
 
@@ -22,7 +22,7 @@
 
 ### 任务进展不用反复切换窗口
 
-- 任务中、完成、等待确认和错误都有对应的气泡与图标。
+- 任务中、完成和错误都有对应的气泡与图标；只有豆包保留“等你确认”，其他 Agent 的权限或询问事件保持任务进行中，不显示带叹号的等待气泡。
 - 多条任务默认完整展开；点击折叠按钮后显示进行中任务数量，再次点击恢复完整列表。
 - 运行中点击气泡可打开所属 Agent；完成后点击状态图标可收起卡片。
 - 不同 Agent 使用带身份的任务文案，同时开着几个桌宠时也能分清来源。
@@ -39,7 +39,7 @@ Agent 连接时显示安燃，Agent 退出后关闭；任务结束不会把桌�
 
 ### 把这句话复制给你的 Agent
 
-> 请在 Apple Silicon Mac 上安装并启动安燃，仓库是 https://github.com/yuchangxu1989-Openclaw/anran-pet 。先读取仓库当前公开 README，以最新公开版本为准，不要使用旧标签或另装第二套 MCP。Kimi 已安装安燃插件时直接复用；其他 Agent 可通过 Node.js 运行 npx -y github:yuchangxu1989-Openclaw/anran-pet install --host qwen --print（把 qwen 换成当前宿主 workbuddy、vbuddy 或 doubao；WorkBuddy 按 README 使用 --apply）取得配置，再通过当前宿主的官方连接器或扩展入口注册并启动；vBuddy 和千问必须在官方“添加 → 粘贴 JSON 配置”入口粘贴安装输出中的 officialJSON，不要用手动命令表单拆分含空格的路径。请回读版本与七个工具；任务气泡必须在真实对话中验收，连接成功不等于任务状态已对齐，不支持自动上报的宿主请明确告诉我。需要我授权或手动确认时请说明，无法完成的步骤不要假装成功。
+> 请在 Apple Silicon Mac 上安装并启动安燃，仓库是 https://github.com/yuchangxu1989-Openclaw/anran-pet 。先读取仓库当前公开 README，以最新公开版本为准，不要使用旧标签或另装第二套 MCP。Kimi 已安装安燃插件时直接复用；其他 Agent 可通过 Node.js 运行 npx -y github:yuchangxu1989-Openclaw/anran-pet install --host qwen --print（把 qwen 换成当前宿主 workbuddy、vbuddy 或 doubao；WorkBuddy 和 vBuddy 按 README 使用 --apply）取得配置，再通过当前宿主的官方连接器或扩展入口注册并启动。vBuddy 先运行 install --host vbuddy --apply 生成插件 ZIP，再在“专家套件 → 添加 → 上传套件”选择输出中的 archivePath 并安装；官方 Hooks 负责自动任务气泡，MCP 仅作备用。千问在官方“添加 → 粘贴 JSON 配置”入口粘贴安装输出中的 officialJSON，不要用手动命令表单拆分含空格的路径。请回读版本与七个工具；任务气泡和单击、双击、拖拽必须在真实对话与桌面中验收，连接成功不等于任务状态已对齐，不支持自动上报的宿主请明确告诉我。需要我授权或手动确认时请说明，无法完成的步骤不要假装成功。
 
 这句话让 Agent 读取当前公开说明并完成它能执行的安装步骤；官方连接器需要人工确认、宿主没有任务事件入口或真实任务气泡未通过时，Agent 必须明确报告，不能把连接成功说成全部体验已对齐。
 
@@ -67,7 +67,7 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
       "command": "npx",
       "args": [
         "-y",
-        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.22",
+        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.24",
         "mcp",
         "--stdio",
         "--host",
@@ -88,8 +88,8 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
 如果只需先检查公开包能否在自己的 Mac 上安装，可以运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.22 version
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.22 self-test
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.24 version
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.24 self-test
 ```
 
 这两条命令分别回读版本和运行模型自测，不会代替真实桌面体验验收。
@@ -102,7 +102,15 @@ npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.22 self-test
 
 也可以换成 vBuddy 或豆包。统一入口会生成对应配置，再通过该 Agent 的官方连接器界面保存。
 
-vBuddy 和千问都请在官方“连接器 → 添加 → 粘贴 JSON 配置”中粘贴安装输出里的 `configuration.officialJSON`，不要改用手动命令表单。完整 JSON 会保留含空格的 `command` 路径和独立 `args`；下面的千问示例仅用于说明结构，实际安装以命令输出为准：
+vBuddy 使用官方插件 Hooks 自动上报任务状态，MCP 仅作备用。先运行：
+
+```sh
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.24 install --host vbuddy --apply
+```
+
+再打开 vBuddy“专家套件 → 添加 → 上传套件”，选择安装输出中的 `vbuddy.archivePath` 指向的 ZIP 并安装。不要用已证实不可用的 `install_from_path`，也不要直接写 `plugins-custom` 或私有注册表。
+
+千问请在官方“连接器 → 添加 → 粘贴 JSON 配置”中粘贴安装输出里的 `configuration.officialJSON`，不要改用手动命令表单。完整 JSON 会保留含空格的 `command` 路径和独立 `args`；下面的千问示例仅用于说明结构，实际安装以命令输出为准：
 
 ```json
 {
@@ -115,11 +123,11 @@ vBuddy 和千问都请在官方“连接器 → 添加 → 粘贴 JSON 配置”
 }
 ```
 
-连接 vBuddy 时使用相同结构，将最后一个参数改为 `vbuddy`。保存并启用后回读“已连接”和七个工具；不要手动拼接或拆分命令。
+vBuddy 的 MCP 备用配置也使用相同结构，将最后一个参数改为 `vbuddy`；不要手动拼接或拆分命令。
 
-千问已于 2026-11-26 在真实官方界面完成 JSON 导入，回读“已连接”、开关开启和七个工具。vBuddy 也已验证官方界面导入、绿色状态、七工具，以及删除临时入口后的停用／启用重连。
+千问已于 2026-11-26 在真实官方界面完成 JSON 导入，回读“已连接”、开关开启和七个工具。vBuddy 已验证官方“上传套件”安装、插件清单回读，以及真实任务的开始、工具前、权限等待、工具后和完成事件；这些事件均成功调用安燃，桌宠气泡已从“正在处理”切换到“任务完成”。vBuddy 单击、双击、拖拽和恢复显示仍以完整桌面验收记录为准。
 
-vBuddy、千问个人连接和豆包通过 MCP 初始化说明与工具约定主动上报任务状态；是否执行取决于真实宿主与模型，不能仅凭连接成功认定已对齐。vBuddy 真实对话与日志已确认没有 `anran_task` 调用，当前 MCP-only 路径不支持自动任务气泡；千问真实任务上报与桌面体验仍待验收。千问企业账号还可在“企业管理后台 → 安全管控 → Hooks 规则”配置安装输出中的六类 HTTP 事件，接收端只监听本机 `127.0.0.1:47683`；个人账号没有经营主体时不能据此宣称企业入口可用。
+千问个人连接和豆包通过 MCP 初始化说明与工具约定主动上报任务状态；是否执行取决于真实宿主与模型，不能仅凭连接成功认定已对齐。千问真实任务上报与桌面体验仍待验收。千问企业账号还可在“企业管理后台 → 安全管控 → Hooks 规则”配置安装输出中的六类 HTTP 事件，接收端只监听本机 `127.0.0.1:47683`；个人账号没有经营主体时不能据此宣称企业入口可用。
 
 ## 一次升级，各端使用同一份产品
 
@@ -138,9 +146,9 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 | 渠道 | 当前状态 |
 |---|---|
-| GitHub | 已公开，可直接获取 0.2.22；不需要企业认证 |
+| GitHub | 已公开，可直接获取 0.2.24；不需要企业认证 |
 | Kimi 官方市场 | 个人插件可在详情页右上角「✉️」选择“申请发布到官方市场”，填写联系邮箱后由审核团队评估；申请不等于上架 |
-| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.22 Connector 本地候选已生成，未提交、未上架 |
+| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.24 Connector 本地候选已生成，未提交、未上架 |
 | 千问办公公共扩展 | 官方文档写明当前版本暂不支持个人用户上传或发布自建技能 |
 | 豆包 | 暂未找到支持个人公开发布此类桌宠插件的官方入口 |
 
@@ -148,12 +156,12 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 ## 当前验收边界
 
-0.2.22 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
+0.2.24 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
 
 以下项目仍需在真实环境单独验收：
 
-- 真实视觉、hover 动作、白色手型、系统忙碌光标、单击／连击、眼部追视和拖拽流畅度；
-- 千问真实任务上报与桌面体验、豆包的真实连接与桌面体验；vBuddy 当前 MCP-only 路径已实测不支持自动任务气泡；
+- 真实视觉、hover 动作、白色手型、系统忙碌光标、单击／连击、眼部追视和拖拽流畅度；vBuddy 官方 Hooks 任务气泡已通过，完整指针交互仍待验收；
+- 千问真实任务上报与桌面体验、豆包的真实连接与桌面体验；
 - 第二台无 Kimi Mac、Gatekeeper、签名与公证、跨显示器和 macOS 13；
 - 各公开市场的实际提交、审核和上架。
 
