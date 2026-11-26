@@ -235,7 +235,7 @@ def main() -> int:
     finalize_parser.add_argument("--overwrite", action="store_true")
     connect_parser = sub.add_parser("connect")
     connect_parser.add_argument("--host", choices=CONNECT_HOSTS, required=True)
-    connect_parser.add_argument("--apply", action="store_true", help="Install independently, then write WorkBuddy's official MCP data and task-event hooks")
+    connect_parser.add_argument("--apply", action="store_true", help="Install independently, then write WorkBuddy official hooks or package a vBuddy/Qwen official Qoder suite")
     connect_parser.add_argument("--config", type=Path, default=Path.home() / ".workbuddy" / "mcp.json")
     connect_parser.add_argument("--settings", type=Path, default=Path.home() / ".workbuddy" / "settings.json")
     connect_parser.add_argument("--install-root", type=Path)
@@ -251,10 +251,10 @@ def main() -> int:
     elif args.command == "pending":
         result = pending(args.workspace)
     elif args.command == "connect":
-        if args.apply and args.host != "workbuddy":
-            parser.error("--apply is supported only for WorkBuddy; use the official connector editor for other hosts")
+        if args.apply and args.host not in ("workbuddy", "vbuddy", "qwen"):
+            parser.error("--apply is supported only for WorkBuddy, vBuddy and Qwen Work")
         if args.apply:
-            result = apply_workbuddy(args.config, args.settings, args.install_root)
+            result = run_installer(args.host, True, args.config, args.settings, args.install_root)
         else:
             result = connection(args.host, args.install_root)
     elif args.command == "bundle-runtime":
