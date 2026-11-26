@@ -20,7 +20,7 @@ description: 安装、恢复、检查安燃，或把同一个安燃连接到 Wor
 
 ## 其他 Agent：连接同一个安燃
 
-1. 从当前技能位置解析插件根，运行 `python3 <本技能目录>/scripts/install_anran.py connect --host <workbuddy|vbuddy|qwen|doubao>`。脚本只委托插件内的原生 `assets/runtime/anran install`；运行器或资源缺失时非零失败，不输出假配置。
+1. 从当前技能位置解析插件根，运行 `python3 <本技能目录>/scripts/install_anran.py connect --host auto`；无法唯一识别时，Agent 按自身真实身份改用 `workbuddy|vbuddy|qwen|doubao`，不让用户替换公开提示词或根据已安装应用猜测。脚本只委托插件内的原生 `assets/runtime/anran install`；运行器或资源缺失时非零失败，不输出假配置。
 2. 原生安装入口先把运行器和资源复制到 `~/Library/Application Support/Anran/versions/<版本-哈希>/`，检查版本、资源与哈希后切换 `current`。所有宿主只引用 `current/anran`，上一代保留用于回滚；已安装运行器不依赖 Kimi 安装目录或源插件目录继续存在。
 3. WorkBuddy 使用 `--apply`，由同一原生入口更新官方 MCP 数据文件和官方用户 hooks。更新前备份，只替换唯一的安燃项与安燃自己的任务事件 hooks，原子写入并回读，保留所有无关连接器、hooks 和配置；多个安燃候选项必须停止。任务气泡显示本次任务的短片段，完整提示词与工具正文不进入桌宠。
 4. vBuddy、千问、豆包由 Agent 将输出填入对应官方连接器界面。保存后重新启用或刷新，读取卡片无连接错误且开关开启，再检查真实运行进程。没有官方支持入口时停止并说明，不写私有配置或修改宿主。2026-11-26 的真实 vBuddy 负例已证明：连接器识别到七个工具，但对话任务没有调用 `anran_task`，因此 MCP-only 路径不能宣称支持自动任务气泡；没有宿主官方任务事件入口时明确标为不支持，不用强化提示词冒充修复。千问企业账号还可把安装输出中的六类 HTTP Hooks 规则填入“企业管理后台 → 安全管控 → Hooks 规则”；接收端只监听 `127.0.0.1:47683`，随千问共享运行时启动，不能把它当作个人账号已具备的能力。

@@ -134,10 +134,11 @@ def finalize(widget_root: Path, overwrite: bool) -> dict:
 
 
 HOSTS = ("workbuddy", "vbuddy", "qwen", "doubao")
+CONNECT_HOSTS = ("auto", *HOSTS)
 HOST_ENTRIES = {
     "workbuddy": "插件 → MCP 服务器 → 配置 MCP",
     "vbuddy": "连接器 → 添加 → 粘贴 JSON 配置",
-    "qwen": "扩展 → 连接器 → 添加 → 手动填写配置",
+    "qwen": "扩展 → 连接器 → 添加 → 粘贴 JSON 配置",
     "doubao": "技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器",
 }
 
@@ -233,7 +234,7 @@ def main() -> int:
     finalize_parser.add_argument("--widget-root", type=Path, required=True)
     finalize_parser.add_argument("--overwrite", action="store_true")
     connect_parser = sub.add_parser("connect")
-    connect_parser.add_argument("--host", choices=HOSTS, required=True)
+    connect_parser.add_argument("--host", choices=CONNECT_HOSTS, required=True)
     connect_parser.add_argument("--apply", action="store_true", help="Install independently, then write WorkBuddy's official MCP data and task-event hooks")
     connect_parser.add_argument("--config", type=Path, default=Path.home() / ".workbuddy" / "mcp.json")
     connect_parser.add_argument("--settings", type=Path, default=Path.home() / ".workbuddy" / "settings.json")

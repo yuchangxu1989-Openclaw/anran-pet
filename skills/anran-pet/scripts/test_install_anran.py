@@ -89,13 +89,14 @@ with tempfile.TemporaryDirectory() as temporary:
     subprocess.run = fake_run
     try:
         install_root = workspace / "installed" / "Anran"
-        for host in module.HOSTS:
+        for host in module.CONNECT_HOSTS:
             result = module.connection(host, install_root)
             assert result["requiresKimi"] is False
             assert calls[-1] == [
                 str(binary.resolve()), "install", "--host", host, "--print",
                 "--install-root", str(install_root.resolve()),
             ]
+        assert module.HOST_ENTRIES["qwen"].endswith("粘贴 JSON 配置")
         config = workspace / "mcp.json"
         settings = workspace / "settings.json"
         module.apply_workbuddy(config, settings, install_root)

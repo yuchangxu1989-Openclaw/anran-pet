@@ -44,30 +44,40 @@ try {
 }
 
 const args = process.argv.slice(2);
-const hostIndex = args.indexOf("--host");
-const host = hostIndex >= 0 ? args[hostIndex + 1] : "workbuddy";
-if (!["workbuddy", "vbuddy", "qwen", "doubao"].includes(host)) fail("unsupported host");
-const installArgs = ["install", "--host", host, "--print"];
-if (process.env.ANRAN_INSTALL_ROOT) installArgs.push("--install-root", process.env.ANRAN_INSTALL_ROOT);
-const installed = spawnSync(binary, installArgs, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024 });
-if (installed.status !== 0) {
-  process.stderr.write(installed.stderr || installed.stdout || "native installation failed\n");
-  process.exit(installed.status || 1);
-}
-let result;
-try {
-  result = JSON.parse(installed.stdout);
-  if (result.requiresKimi !== false || result.version !== pkg.version || result.binarySHA256 !== manifest.runtime.binarySHA256) {
-    fail("installed native runtime readback does not match this package");
+const command = args[0] || "help";
+let executable = binary;
+if (["install", "connect", "mcp"].includes(command)) {
+  const hostIndex = args.indexOf("--host");
+  const host = hostIndex >= 0 ? args[hostIndex + 1] : undefined;
+  if (!["auto", "workbuddy", "vbuddy", "qwen", "doubao"].includes(host)) {
+    fail("use --host auto, workbuddy, vbuddy, qwen or doubao");
   }
-  if (!result.executable || sha256(result.executable) !== manifest.runtime.binarySHA256) {
-    fail("stable native executable hash mismatch");
+  const installArgs = ["install", "--host", host, "--print"];
+  if (process.env.ANRAN_INSTALL_ROOT) installArgs.push("--install-root", process.env.ANRAN_INSTALL_ROOT);
+  const installed = spawnSync(binary, installArgs, {
+    encoding: "utf8",
+    maxBuffer: 4 * 1024 * 1024,
+    env: process.env,
+  });
+  if (installed.status !== 0) {
+    process.stderr.write(installed.stderr || installed.stdout || "native installation failed\n");
+    process.exit(installed.status || 1);
   }
-} catch (error) {
-  fail(`native installation readback failed: ${error.message}`);
+  try {
+    const result = JSON.parse(installed.stdout);
+    if (result.requiresKimi !== false || result.version !== pkg.version || result.binarySHA256 !== manifest.runtime.binarySHA256) {
+      fail("installed native runtime readback does not match this package");
+    }
+    if (!result.executable || sha256(result.executable) !== manifest.runtime.binarySHA256) {
+      fail("stable native executable hash mismatch");
+    }
+    executable = result.executable;
+  } catch (error) {
+    fail(`native installation readback failed: ${error.message}`);
+  }
 }
 
-const child = spawn(result.executable, args, { stdio: "inherit" });
+const child = spawn(executable, args, { stdio: "inherit", env: process.env });
 for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
   process.on(signal, () => { if (!child.killed) child.kill(signal); });
 }
