@@ -12,7 +12,7 @@
 
 安燃把原生桌宠、任务状态气泡和 Agent 连接放在同一个插件里。Kimi、WorkBuddy、vBuddy、千问和豆包共用同一份角色素材与原生运行器，不需要另装第二个 MCP 产品，也不需要手动解压运行器。
 
-**当前公开版本：0.2.20｜Apple Silicon Mac｜Apache-2.0**
+**当前公开版本：0.2.21｜Apple Silicon Mac｜Apache-2.0**
 
 ### 桌面上的一个伙伴
 
@@ -36,6 +36,12 @@ Agent 连接时显示安燃，Agent 退出后关闭；任务结束不会把桌�
 > 当前 WorkBuddy 连接能力可以打开宿主应用，暂不能定位到具体会话、代替你回复或取消任务。
 
 ## 快速开始
+
+### 把这句话复制给你的 Agent
+
+> 请在 Apple Silicon Mac 上安装并启动安燃，仓库是 https://github.com/yuchangxu1989-Openclaw/anran-pet 。先读取仓库当前公开 README，以最新公开版本为准，不要使用旧标签或另装第二套 MCP。Kimi 已安装安燃插件时直接复用；其他 Agent 可通过 Node.js 运行 npx -y github:yuchangxu1989-Openclaw/anran-pet install --host qwen --print（把 qwen 换成当前宿主 workbuddy、vbuddy 或 doubao；WorkBuddy 按 README 使用 --apply）取得配置，再通过当前宿主的官方连接器或扩展入口注册并启动。请回读版本与七个工具；任务气泡必须在真实对话中验收，连接成功不等于任务状态已对齐，不支持自动上报的宿主请明确告诉我。需要我授权或手动确认时请说明，无法完成的步骤不要假装成功。
+
+这句话让 Agent 读取当前公开说明并完成它能执行的安装步骤；官方连接器需要人工确认、宿主没有任务事件入口或真实任务气泡未通过时，Agent 必须明确报告，不能把连接成功说成全部体验已对齐。
 
 ### Kimi
 
@@ -61,7 +67,7 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
       "command": "npx",
       "args": [
         "-y",
-        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.20",
+        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.21",
         "mcp",
         "--stdio",
         "--host",
@@ -82,8 +88,8 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
 如果只需先检查公开包能否在自己的 Mac 上安装，可以运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.20 version
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.20 self-test
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.21 version
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.21 self-test
 ```
 
 这两条命令分别回读版本和运行模型自测，不会代替真实桌面体验验收。
@@ -130,9 +136,9 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 | 渠道 | 当前状态 |
 |---|---|
-| GitHub | 已公开，可直接获取 0.2.20；不需要企业认证 |
+| GitHub | 已公开，可直接获取 0.2.21；不需要企业认证 |
 | Kimi 官方市场 | 个人插件可在详情页右上角「✉️」选择“申请发布到官方市场”，填写联系邮箱后由审核团队评估；申请不等于上架 |
-| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.20 Connector 本地候选已生成，未提交、未上架 |
+| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.21 Connector 本地候选已生成，未提交、未上架 |
 | 千问办公公共扩展 | 官方文档写明当前版本暂不支持个人用户上传或发布自建技能 |
 | 豆包 | 暂未找到支持个人公开发布此类桌宠插件的官方入口 |
 
@@ -140,7 +146,7 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 ## 当前验收边界
 
-0.2.20 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
+0.2.21 公开版已通过指定 Git 标签的公开安装、版本与哈希回读和自测；Kimi 源包与安装版、WorkBuddy 安装与运行实例已完成发布对齐。详细测试结果以当前发布回读为准。
 
 以下项目仍需在真实环境单独验收：
 
