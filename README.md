@@ -12,7 +12,7 @@
 
 安燃把原生桌宠、任务状态气泡和 Agent 连接放在同一个插件里。Kimi、WorkBuddy、vBuddy、千问和豆包共用同一份角色素材与原生运行器，不需要另装第二个 MCP 产品，也不需要手动解压运行器。
 
-**当前公开版本：0.2.29｜Apple Silicon Mac｜Apache-2.0**
+**当前公开版本：0.2.30｜Apple Silicon Mac｜Apache-2.0**
 
 ### 桌面上的一个伙伴
 
@@ -53,7 +53,7 @@ Agent 连接时显示安燃，Agent 退出后关闭；任务结束不会把桌�
 | WorkBuddy | 打开官方 MCP 设置，粘贴下方 WorkBuddy 完整 JSON，保存并重新连接。随后让 Agent 回读 MCP 与任务 Hooks；若 Hooks 仍未写入，只算连接器已配置，任务气泡继续标为未完成。 | 回读运行器版本、资源哈希、七个工具和任务 Hooks，不用“已连接”代替任务气泡验收。 |
 | vBuddy | 由 Agent 运行下方 `install --host vbuddy --apply`，读取输出中的 `vbuddy.archivePath`；用户只需在“专家套件 → 添加 → 上传套件”选择该 ZIP。若提示同名冲突，确认替换的是当前安燃套件。 | 在套件详情页回读目标版本并确认已启用；只生成 ZIP、只装 MCP 都不等于完成。 |
 | 千问办公 | 由 Agent 运行 `install --host qwen --apply`，读取 `qwen.archivePath`；用户在“技能 · 扩展 → 专家套件 → 添加 → 上传套件”选择该 ZIP，若提示同名冲突，确认替换当前安燃套件。再由 Agent 读取 `configuration.officialJSON`，引导用户在“扩展 → 连接器 → 添加 → 粘贴 JSON 配置”粘贴完整 JSON；不要拆分含空格的 `command` 路径。 | 在套件详情页回读目标版本并确认启用，再回读连接器“已连接”和七个工具；发送无工具短任务，确认任务中与完成事件。只生成 ZIP、只装 MCP 都不等于完成。 |
-| 豆包 | 由 Agent 运行 `install --host doubao --print`，读取 `configuration`；用户在“技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器”填写该配置。 | 回读连接器与七个工具；MCP 主动上报未触发时，明确标为任务气泡未验收。 |
+| 豆包 | 由 Agent 运行 `install --host doubao --print`，读取 `configuration`；用户在“技能 · 连接器 · 伙伴 → 新建 → 新建自定义连接器”填写该配置。 | 回读连接器与七个工具；连接后由共享运行器只读监听桌面任务生命周期，发送无工具短任务确认任务中与完成气泡。真实视觉未通过时仍须明确报告。 |
 
 如果下载本身失败，先保留网络或权限错误，再重试公开仓库读取；如果平台没有上述受支持入口，就明确写出“当前没有已核实的手动安装兜底”，不要编造配置路径。手动安装完成后仍须执行版本、资源哈希、七个工具和真实连接检查。
 
@@ -81,7 +81,7 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
       "command": "npx",
       "args": [
         "-y",
-        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.29",
+        "github:yuchangxu1989-Openclaw/anran-pet#v0.2.30",
         "mcp",
         "--stdio",
         "--host",
@@ -102,8 +102,8 @@ WorkBuddy 5.0.0 及以上版本可以在官方 MCP 配置中使用下面的公�
 如果只需先检查公开包能否在自己的 Mac 上安装，可以运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.29 version
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.29 self-test
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.30 version
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.30 self-test
 ```
 
 这两条命令分别回读版本和运行模型自测，不会代替真实桌面体验验收。
@@ -119,8 +119,8 @@ npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.29 self-test
 vBuddy 使用官方 Qoder 套件 command Hooks 自动上报任务状态，MCP 提供工具并作为备用。千问个人版连接官方 MCP 后，由共享运行器只读监听本机桌面生命周期并自动显示任务中与完成气泡，不要求上传 Qoder 套件。分别运行：
 
 ```sh
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.29 install --host vbuddy --apply
-npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.29 install --host qwen --print
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.30 install --host vbuddy --apply
+npx -y github:yuchangxu1989-Openclaw/anran-pet#v0.2.30 install --host qwen --print
 ```
 
 vBuddy 再打开“技能 · 扩展 → 专家套件 → 添加 → 上传套件”，选择输出中的 `vbuddy.archivePath`。不要用已证实不可用的 `install_from_path`，也不要直接写 `plugins-custom` 或私有注册表。千问个人版不需要上传套件；只有自动链路失败时，才按上方“自动安装失败时的手动兜底”使用 `qwen.archivePath` 走官方上传入口。
@@ -142,7 +142,7 @@ vBuddy 的 MCP 备用配置也使用相同结构，将最后一个参数改为 `
 
 vBuddy 已于 2026-11-26 固定“【M4安全】vivo企业专属模型”完成真实任务验收，观察到“正在处理”与“已完成”气泡，没有“等你确认”或叹号气泡。千问个人版已完成官方 JSON 导入，回读“已连接”、开关开启和七个工具；宿主日志确认当前 OpenCode 策略不执行 Qoder command Hooks，因此改用共享运行器只读监听本机桌面生命周期。候选运行器已在隔离环境中实测任务开始、带真实标题的完成卡片与自动隐藏；正式共享进程仍需重连加载新版后复验。
 
-千问企业账号还可在“企业管理后台 → 安全管控 → Hooks 规则”配置安装输出中的六类 HTTP 事件作为补充，接收端只监听本机 `127.0.0.1:47683`；个人账号没有经营主体时不能据此宣称企业入口可用。豆包通过 MCP 初始化说明与工具约定主动上报，是否执行取决于真实宿主与模型。
+千问企业账号还可在“企业管理后台 → 安全管控 → Hooks 规则”配置安装输出中的六类 HTTP 事件作为补充，接收端只监听本机 `127.0.0.1:47683`；个人账号没有经营主体时不能据此宣称企业入口可用。豆包由共享运行器只读监听桌面 `agent_task_status` 与会话结束记录，自动显示任务中、完成或失败，不依赖模型主动调用 MCP。真实日志副本已通过隔离回放；当前任务标题使用“豆包工作任务”安全回退，真实桌面视觉和正式共享进程仍需复验。
 
 ## 一次升级，各端使用同一份产品
 
@@ -161,9 +161,9 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 | 渠道 | 当前状态 |
 |---|---|
-| GitHub | 已公开，可直接获取 0.2.29；不需要企业认证 |
+| GitHub | 已公开，可直接获取 0.2.30；不需要企业认证 |
 | Kimi 官方市场 | 个人插件可在详情页右上角「✉️」选择“申请发布到官方市场”，填写联系邮箱后由审核团队评估；申请不等于上架 |
-| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.29 Connector 本地候选已生成，未提交、未上架 |
+| WorkBuddy Connector 市场 | 需要企业认证；没有经营主体无法发布。0.2.30 Connector 本地候选已生成，未提交、未上架 |
 | 千问办公公共扩展 | 官方文档写明当前版本暂不支持个人用户上传或发布自建技能 |
 | 豆包 | 暂未找到支持个人公开发布此类桌宠插件的官方入口 |
 
@@ -171,7 +171,7 @@ Kimi 插件“更新”只更新 Kimi 自己的插件副本。其他 Agent 的�
 
 ## 当前验收边界
 
-0.2.29 公开版只有在指定 Git 标签下完成 WorkBuddy、vBuddy、千问和豆包的隔离安装、版本与哈希回读和自测后才发布为可用；KimiWork 使用官方插件导入与桌宠创建路线。公开安装结果、本机插件更新和真实宿主体验分别记录，任何一项都不冒充另外两项。
+0.2.30 公开版只有在指定 Git 标签下完成 WorkBuddy、vBuddy、千问和豆包的隔离安装、版本与哈希回读和自测后才发布为可用；KimiWork 使用官方插件导入与桌宠创建路线。公开安装结果、本机插件更新和真实宿主体验分别记录，任何一项都不冒充另外两项。
 
 以下项目仍需在真实环境单独验收：
 
