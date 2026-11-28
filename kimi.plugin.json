@@ -1,7 +1,7 @@
 {
   "$schema": "https://catalog.msh.team/misc/kimi.plugin.schema.json",
   "name": "anran-pet",
-  "version": "0.2.40",
+  "version": "0.2.42",
   "description": "一个安燃插件，统一安装或恢复 Kimi 中的安燃桌宠，并把同一安燃独立安装到本机稳定目录，供 WorkBuddy、vBuddy、千问和豆包连接。",
   "keywords": [
     "桌宠",
@@ -11,7 +11,7 @@
   ],
   "author": "长煦",
   "license": "Apache-2.0",
-  "skillInstructions": "一个安燃插件统一管理原生桌宠、运行器和各 Agent 的官方连接注册，不让用户另装 MCP 产品。安装或恢复时先发现并复用正式实例，确认不存在才创建。连接其他 Agent 时通过统一 connect 入口调用原生安装器，先写入安燃自己的稳定目录，再注册宿主；Kimi 插件更新不是其他宿主的前置步骤。真实验收同启同关、任务片段气泡、右键菜单、拖拽和追视。",
+  "skillInstructions": "一个安燃插件统一管理原生桌宠、运行器和各 Agent 的官方连接注册，不让用户另装 MCP 产品。安装或恢复时先发现并复用正式实例，确认不存在才创建。连接其他 Agent 时通过统一 connect 入口调用原生安装器，先写入安燃自己的稳定目录，再注册宿主；共享运行器由 MCP 连接自动复用或启动，前台回读 ready 后即退出，不用后台任务卡片承载常驻进程；健康检查用 current/anran status --host <宿主>，启动或连接失败直接报错，不另建监工 Automation。Kimi 插件更新不是其他宿主的前置步骤。真实验收同启同关、任务片段气泡、右键菜单、拖拽和追视。",
   "interface": {
     "displayName": "桌宠安燃",
     "shortDescription": "统一安装或恢复安燃桌宠，并连接 WorkBuddy、vBuddy、千问和豆包。",
